@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="referrer" content="always">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <!-- No cache -->
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache; no-store; no-save">
+    <!-- Summary -->
+    <meta property="og:title" content="project title">
+    <meta property="og:url" content="project url">
+    <meta property="og:description" content="project description">
+    <title>project title</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery_ui.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- JavaScript -->
+    <!--[if lte IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<style type="text/css">
+#header {position:fixed; top:0; left:0; width:100%; height:60px; line-height:60px; background:#222;}
+#header h1 {color:#fff; font-size:20px; text-align:center;}
+#footer {position:fixed; bottom:0; left:0; width:100%; height:30px; line-height:30px; background:#222;}
+#footer p {color:#fff; font-size:14px; text-align:center;}
+#container {padding-top:60px;}
+.form {margin:0 auto; width:90%; max-width:800px;}
+.form label {display:block; margin-top:30px;height:20px; line-height:20px; color:#222; font-size:22px;}
+.form input {display:block; margin-top:14px; padding:0 3%; width:94%; height:44px; line-height:44px; color:#444; font-size:20px; font-weight:bold; border:0; border-bottom:1px solid #ddd;}
+</style>    
+<div id="wrap">
+    <header id="header"><h1>title</h1></header>
+    <div id="container">
+        <div class="form">
+            <label for="input0101">계산해 볼 대출가능 한도 (%)</label>
+            <input type="tel" id="input0101" name="input0101" placeholder="계산할 한도액 (% 두자리 입력)" maxlength="2" value="80">
+            <label for="input0102">총 금액</label>
+            <input type="tel" id="input0102" name="input0102" placeholder="총 필요한 금액 입력" onKeyUp="resultView();">
+            <label for="result0101">대출 가능 금액</label>
+            <input type="tel" id="result0101" name="data0102" readonly>
+            <label for="result0102">총 금액을 채우기 위해 필요한 금액</label>
+            <input type="tel" id="result0102" name="result01" readonly>
+        </div>
+    </div>
+    <footer id="footer"><p>@simbyungki</p></footer>
+</div>
+
+<!-- Load Javascript -->
+<script type="text/javascript" src="js/jquery.1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript">
+function resultView(){
+    var input0101 = document.getElementById('input0101');
+    var input0102 = document.getElementById('input0102');
+    var result0101 = document.getElementById('result0101');
+    var inputVal01 = input0101.value;
+    var inputVal02 = input0102.value;
+    result0101.value = result01(inputVal02, inputVal01);
+    result0102.value = result02(inputVal02, result0101.value);
+}
+
+//result01 = 총 필요 금액에서 퍼센트를 계산하여 받을 수 있는 대출 금액
+function result01(val1, val2){
+    return Math.floor(val1 * val2/100);
+} 
+//result02 = 총 필요 금액에서 대출금액을 뺀 내가 소지하고 있어야 하는 금액
+function result02(val1, val2){
+    return val1 - val2;
+}
+
+//
+function addComma(num) {
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+   return num.toString().replace(regexp, ',');
+}
+</script>
+
+</body>
+</html>
