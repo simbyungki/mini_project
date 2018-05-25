@@ -46,7 +46,7 @@
             <label for="input0101">계산해 볼 대출가능 한도 (%)</label>
             <input type="tel" id="input0101" name="input0101" placeholder="계산할 한도액 (% 두자리 입력)" maxlength="2" value="80">
             <label for="input0102">총 금액</label>
-            <input type="tel" id="input0102" name="input0102" placeholder="총 필요한 금액 입력" onKeyUp="resultView();">
+            <input type="tel" id="input0102" name="input0102" placeholder="총 필요한 금액 입력" onKeyUp="resultView(); inputNumberFormat(this);">
             <label for="result0101">대출 가능 금액</label>
             <input type="tel" id="result0101" name="data0102" readonly>
             <label for="result0102">총 금액을 채우기 위해 필요한 금액</label>
@@ -67,10 +67,10 @@ function resultView(){
     var input0101 = document.getElementById('input0101');
     var input0102 = document.getElementById('input0102');
     var result0101 = document.getElementById('result0101');
-    var inputVal01 = input0101.value;
-    var inputVal02 = input0102.value;
-    result0101.value = result01(inputVal02, inputVal01);
-    result0102.value = result02(inputVal02, result0101.value);
+    var inputVal01 = uncomma(input0101.value);
+    var inputVal02 = uncomma(input0102.value);
+    result0101.value = comma(result01(inputVal02, inputVal01));
+    result0102.value = comma(result02(inputVal02, uncomma(result0101.value)));
 }
 
 //result01 = 총 필요 금액에서 퍼센트를 계산하여 받을 수 있는 대출 금액
@@ -82,11 +82,21 @@ function result02(val1, val2){
     return val1 - val2;
 }
 
-//
-function addComma(num) {
-  var regexp = /\B(?=(\d{3})+(?!\d))/g;
-   return num.toString().replace(regexp, ',');
+//실시간 콤마
+function inputNumberFormat(obj) {
+    obj.value = comma(uncomma(obj.value));
 }
+//콤마찍기
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+//콤마해제
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+}
+
 </script>
 
 </body>
