@@ -1,0 +1,19 @@
+@charset "utf-8";
+.form,
+.result {position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:90%; max-width:640px; text-align:center;}
+.form input,
+.form button {display:block; text-align:center;}
+.form .title {margin-bottom:30px; letter-spacing:-2px; font-size:30px; font-weight:800;}
+.form input {padding:0 10px; width:100%; height:70px; letter-spacing:-2px; color:#444; font-size:24px; border:0; border-bottom:1px solid #ccc; box-sizing:border-box;}
+.result {display:none;}
+.result .bmi {margin-bottom:30px; padding-bottom:30px; border-bottom:2px solid #ccc;}
+.result .bmi .gray {color:#777;}
+.result .bmi .green {color:#4ea614;}
+.result .bmi .pink {color:#dd4242;}
+.result .bmi .red {color:#f00;}
+.result p {line-height:44px; letter-spacing:-2px; color:#666; font-size:20px;}
+.result p span {color:#f00; font-size:34px; font-weight:600;}
+.result button {margin-top:25px;}
+.app button {margin-top:10px; width:100%; height:66px; line-height:66px; color:#fff; font-size:24px; background:#444; border:1px solid #000; border-radius:0; cursor:pointer;}
+.hide {display:none;}
+.show {display:block;}
